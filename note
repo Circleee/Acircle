@@ -1,0 +1,299 @@
+表单验证JS
+	$(document).ready(function(){
+		
+		
+		//创建一个*
+		$(".a1").each(function(){
+			
+			var hdw = $("<strong class='reda'>*</strong>");
+			
+			$(this).parent().append(hdw);
+
+			});
+			//end
+			
+	
+		$("form :input").blur(function(){
+			
+			$(this).parent().find(".a2").remove();
+			
+			//判断		
+			if ($(this).is("#username")){
+				
+				if (this.value=="" || this.value.length < 6){
+					
+					var hdw1 = $("<span class='a2 error'>用户名不得小于6位</span>");
+					
+					$(this).parent().append(hdw1);
+					
+					}else{
+						
+					var hdw1 = $("<span class='a2 righta'>正确</span>");
+					
+					$(this).parent().append(hdw1);				
+				}
+
+			}
+			//end	
+			
+	
+			//判断		
+			if ($(this).is("#password")){
+				
+				if (this.value==""){
+					
+					var hdw1 = $("<span class='a2 error'>密码不得为空</span>");
+					
+					$(this).parent().append(hdw1);
+					
+					}else{
+						
+					var hdw1 = $("<span class='a2 righta'>正确</span>");
+					
+					$(this).parent().append(hdw1);				
+				}
+
+			}
+			//end
+				
+			//判断		
+			if ($(this).is("#passwords")){
+				
+				if (this.value=="" || this.value!= $("#password").val()){
+					
+					var hdw1 = $("<span class='a2 error'>两次密码不一样</span>");
+					
+					$(this).parent().append(hdw1);
+					
+					}else{
+						
+					var hdw1 = $("<span class='a2 righta'>正确</span>");
+					
+					$(this).parent().append(hdw1);				
+				}
+
+			}
+			//end	
+
+			
+			//判断		
+			if ($(this).is("#email")){
+				
+				if (this.value=="" || ( this.value!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value) )){
+					
+					var hdw1 = $("<span class='a2 error'>邮件的格式不正确</span>");
+					
+					$(this).parent().append(hdw1);
+					
+					}else{
+						
+					var hdw1 = $("<span class='a2 righta'>正确</span>");
+					
+					$(this).parent().append(hdw1);				
+				}
+
+			}
+			//end	
+			
+			//判断		
+			if ($(this).is("#tel")){
+				
+				if (this.value=="" || isNaN($(this).val()) || this.value.length < 11 ){
+					
+					var hdw1 = $("<span class='a2 error'>手机号不得为空，必须是11位数字</span>");
+					
+					$(this).parent().append(hdw1);
+					
+					}else{
+						
+					var hdw1 = $("<span class='a2 righta'>正确</span>");
+					
+					$(this).parent().append(hdw1);				
+				}
+
+			}
+			//end
+
+	});	
+	//blur  end
+		
+		
+		
+		//提交
+		$("#send").click(function(){
+			
+			$("form :input").trigger("blur");
+			
+			var hdw3 = $(".error").length; 
+			
+			if (hdw3){
+				
+				return false;
+				
+				}
+			
+			alert("注册成功");	
+	
+		});
+	//end
+	
+	
+	
+	//重置
+	$("#res").click(function(){		
+		$(".a2").remove();
+	});
+	//end	
+});	
+
+
+
+纯CSS实现 radio 美化
+	使用
+	<input class="magic-radio" type="radio" name="radio" id="r1">
+	<label for="r1">Normal</label>
+
+
+
+@keyframes hover-color {
+	from {
+		border-color: #c0c0c0;
+	}
+
+	to {
+		border-color: #3e97eb;
+	}
+}
+
+.magic-radio,
+.magic-checkbox {
+	position: absolute;
+	display: none;
+}
+
+.magic-radio[disabled],
+.magic-checkbox[disabled] {
+	cursor: not-allowed;
+}
+
+.magic-radio + label,
+.magic-checkbox + label {
+	position: relative;
+	display: block;
+	padding-left: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.magic-radio + label:hover:before,
+  .magic-checkbox + label:hover:before {
+	animation-duration: 0.4s;
+	animation-fill-mode: both;
+	animation-name: hover-color;
+}
+
+.magic-radio + label:before,
+  .magic-checkbox + label:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content: '';
+	border: 1px solid #c0c0c0;
+}
+
+.magic-radio + label:after,
+  .magic-checkbox + label:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+
+.magic-radio[disabled] + label,
+.magic-checkbox[disabled] + label {
+	cursor: not-allowed;
+	color: #e4e4e4;
+}
+
+.magic-radio[disabled] + label:hover, .magic-radio[disabled] + label:before, .magic-radio[disabled] + label:after,
+  .magic-checkbox[disabled] + label:hover,
+  .magic-checkbox[disabled] + label:before,
+  .magic-checkbox[disabled] + label:after {
+	cursor: not-allowed;
+}
+
+.magic-radio[disabled] + label:hover:before,
+  .magic-checkbox[disabled] + label:hover:before {
+	border: 1px solid #e4e4e4;
+	animation-name: none;
+}
+
+.magic-radio[disabled] + label:before,
+  .magic-checkbox[disabled] + label:before {
+	border-color: #e4e4e4;
+}
+
+.magic-radio:checked + label:before,
+.magic-checkbox:checked + label:before {
+	animation-name: none;
+}
+
+.magic-radio:checked + label:after,
+.magic-checkbox:checked + label:after {
+	display: block;
+}
+
+.magic-radio + label:before {
+	border-radius: 50%;
+}
+
+.magic-radio + label:after {
+	top: 7px;
+	left: 7px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #3e97eb;
+}
+
+.magic-radio:checked + label:before {
+	border: 1px solid #3e97eb;
+}
+
+.magic-radio:checked[disabled] + label:before {
+	border: 1px solid #c9e2f9;
+}
+
+.magic-radio:checked[disabled] + label:after {
+	background: #c9e2f9;
+}
+
+.magic-checkbox + label:before {
+	border-radius: 3px;
+}
+
+.magic-checkbox + label:after {
+	top: 2px;
+	left: 7px;
+	box-sizing: border-box;
+	width: 6px;
+	height: 12px;
+	transform: rotate(45deg);
+	border-width: 2px;
+	border-style: solid;
+	border-color: #fff;
+	border-top: 0;
+	border-left: 0;
+}
+
+.magic-checkbox:checked + label:before {
+	border: #3e97eb;
+	background: #3e97eb;
+}
+
+.magic-checkbox:checked[disabled] + label:before {
+	border: #c9e2f9;
+	background: #c9e2f9;
+}
