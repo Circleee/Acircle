@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ls</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- <script src="dist/build.js"></script> -->
+    <script type="text/javascript">
+    	
+  		const circle = {
+  			name:'circle',
+  			todos:[
+  				{name:'want see movie',completed:true},
+  				{name:'coding',completed:true},
+  				{name:'sleep',completed:false}
+  			]
+  		}
+  		function render(todos) {
+  			return(`<ul>
+				${todos.map(todo=>`<li>${todo.name} ${todo.completed?'√':'×'}</li>`).join('')}
+			</ul>`)
+  		}
+  		console.log(render(circle.todos));
+  		const template = `
+  			<h1>${circle.name}</h1>
+  			${render(circle.todos)}
+  		`
+  		document.body.innerHTML  = template
+    </script>
+  </body>
+</html>
